@@ -1,14 +1,16 @@
-package com.example.noteapp.ui.fragments
+package com.danil.urok_dz4_2.ui.fragments.onboard
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.inflate
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+
 import com.example.noteapp.R
 import com.example.noteapp.databinding.FragmentOnBoardPagerBinding
 
-class OnBoardPagerFragment : Fragment() {
+class OnBoardPagingFragment : Fragment() {
 
     private lateinit var binding: FragmentOnBoardPagerBinding
 
@@ -16,6 +18,7 @@ class OnBoardPagerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Inflate the layout for this fragment
         binding = FragmentOnBoardPagerBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -26,23 +29,23 @@ class OnBoardPagerFragment : Fragment() {
     }
 
     private fun initialize() = with(binding) {
-        when (arguments?.getInt(KEY)) {
+        when (requireArguments().getInt(ARG_ONBOARD_POSITION)) {
             0 -> {
-                tvText.text = "Очень удобный функционал"
-                lottieAnimation.setAnimation(R.raw.lottieone)
+                lottie.setAnimation(R.raw.lottieone)
+                onTxt.text = "Очень удобный функционал"
             }
             1 -> {
-                tvText.text = "Быстрый, качественный продукт"
-                lottieAnimation.setAnimation(R.raw.lottietwo)
+                onTxt.text = "Быстрый, качественный продукт"
+                lottie.setAnimation(R.raw.lottietwo)
             }
             2 -> {
-                tvText.text = "Куча функций и интересных фишек"
-                lottieAnimation.setAnimation(R.raw.lottiethree)
+                lottie.setAnimation(R.raw.lottiethree)
+                onTxt.text = "Куча функций и интересных фишек"
             }
         }
     }
 
     companion object {
-        const val KEY = "oBoard"
+        const val ARG_ONBOARD_POSITION = "onBoard"
     }
 }
